@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Get, Controller, Param } from '@nestjs/common';
+import { Get, Controller, Param, Delete,Body,Put } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { Players } from './players.interface';
 
@@ -13,5 +13,13 @@ export class PlayersController {
   @Get('/players/:id')
   getPlayersById(@Param('id') id: number): Promise<Players[]> {
     return this.PlayersService.getPlayersById(id);
+  }
+  @Delete('/players/:id')
+  deletePlayersById(@Param('id') id:number){
+    return this.PlayersService.deletePlayersById(id);
+  }
+  @Put('/players/:id')
+  updatePlayersByid(@Param('id')id:number,@Body()body):Promise<void>{
+    return this.PlayersService.updatePlayersById(id,body);
   }
 }
