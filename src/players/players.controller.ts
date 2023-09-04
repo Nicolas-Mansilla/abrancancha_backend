@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Get, Controller, Param, Delete,Body,Put } from '@nestjs/common';
+import { Get, Controller, Param,Post, Delete,Body,Put } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { Players } from './players.interface';
 
@@ -21,5 +21,9 @@ export class PlayersController {
   @Put('/players/:id')
   updatePlayersByid(@Param('id')id:number,@Body()body):Promise<void>{
     return this.PlayersService.updatePlayersById(id,body);
+  }
+  @Post()
+  createPlayer(@Body() body): Promise<any> {
+    return this.PlayersService.createPlayer(body);
   }
 }
